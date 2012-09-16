@@ -10,8 +10,10 @@ width: 350,
 modal: true,
 buttons: {
 "Create an account": function() {
-var em = $("#email").val();
-var ps = $("#password").val();
+var em = $("#email_create").val();
+alert(em);
+var ps = $("#password_create").val();
+alert(ps);
 var psc = $("#password_confirmation").val();
 var data = {
 email: em,	
@@ -238,9 +240,9 @@ box-shadow:0 0 5px #700;
 <%= form_tag do %>
 <fieldset>
 <%= label_tag :email %>
-<%= text_field_tag :email , params[:email], :id=> "email" , :class =>"text ui-widget-content ui-corner-all"%>
+<%= text_field_tag :email , params[:email], :id=> "email_create" , :class =>"text ui-widget-content ui-corner-all"%>
 <%= label_tag :password %>
-<%= password_field_tag :password , params[:password], :id=> "password" , :class =>"text ui-widget-content ui-corner-all"%>
+<%= password_field_tag :password , params[:password], :id=> "password_create" , :class =>"text ui-widget-content ui-corner-all"%>
 <%= label_tag :password_confirmation %>
 <%= password_field_tag :password_confirmation , params[:password_confirmation], :id=> "password_confirmation" , :class =>"text ui-widget-content ui-corner-all"%>
 </fieldset>
