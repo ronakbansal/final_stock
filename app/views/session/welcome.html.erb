@@ -1,0 +1,265 @@
+<div style="height:100px;border:1px solid black;width:100%;">
+<%= image_tag("banner.jpg")%>
+</div>
+<div id="user_nav" style="height:30px;width:100%;">
+  <% if current_user %>
+    Logged in as <%= current_user.email %>.
+    <%= link_to "Log out", log_out_path %>
+  <% end %>
+</div>
+
+<div style="height:100px;width:100%;">
+<%= form_tag url_for(:controller=>'session',:action=>'welcome') , :method=>'get', :id=>"search_box" do %>
+	<div class="wrapper">
+		<%= text_field_tag :search, params[:search],:id=>"search",:placeholder=>"Search and Add your Stock here..." %>
+		
+		<button type="submit" class="search_btn" id="mazzi"><%= image_tag("search_icon.png", :title=>"Search")%></button>
+		<div style="display:none;"> 
+ <%= link_to 'Create New User', '#dialog-form', :id => 'create-user'%>
+</div>
+
+	</div>
+<% end %>
+</div>
+<div id="dialog-form">
+<% if @results %>
+<table style="border:5px solid #990000;">
+<tr style="border: solid 2px lightgrey;">
+<th style="border: solid 2px lightgrey;">Symbol</th>
+<th style="border: solid 2px lightgrey;">Name</th>
+<th style="border: solid 2px lightgrey;">Exchange</th>
+<th style="border: solid 2px lightgrey;">Add to the List</th>
+</tr>
+<% @results.each do |result| %>
+<% if result[:symbol].include?(".BO") or result[:symbol].include?(".NS") %>
+<tr style="border: solid 2px lightgrey;">
+<td style="border: solid 2px lightgrey;"><%= result[:symbol] %></td>
+<td style="border: solid 2px lightgrey;"><%= result[:name] %></td>
+<% if result[:symbol].include?(".BO") %>
+<td style="border: solid 2px lightgrey;">BSE</td>
+<% else %>
+<td style="border: solid 2px lightgrey;">NSE</td>
+<% end %>
+
+<td style="border: solid 2px lightgrey;"><%= link_to 'Add', '#buy-form', :class => 'add', :name=> result[:symbol], :id => 'buy-add' %></td>
+</tr>
+<% end%>
+<% end %>
+</table>
+<% end %>
+</div>
+<%= render :partial => 'datatable' %>
+
+<div id="buy-form" style="border:2px solid;display:none;">
+
+  <%= form_tag do %>
+<table border="0" id="form_table">
+<caption>Buy/Sell Form</caption>
+  <tr>
+    <th width="25%">Script Symbol &#8250;</th>
+    <td>
+        <%= text_field_tag :script_symbol, params[:script_symbol] %>
+        <span>Enter Your Full Name</span>
+    </td>
+  </tr>
+  <tr>
+    <th>Buy/Sell &#8250;</th>
+    <td id="buy_sale">
+    Buy: <%= radio_button_tag 'mode', 'Buy' %><br/>
+	Sell: <%= radio_button_tag 'mode', 'Sell' %>
+    <span>Your Active Email Address</span>
+    </td>
+  </tr>
+    <tr>
+    <th width="25%">Quantity &#8250;</th>
+    <td>
+        <%= text_field_tag :quantity, params[:quantity] %>
+        <span>Enter Your Full Name</span>
+    </td>
+  </tr>
+     <tr>
+    <th width="25%">Price &#8250;</th>
+    <td>
+        <%= text_field_tag :user_price, params[:user_price] %>
+        <span>Enter Your Full Name</span>
+    </td>
+  </tr>
+    <tr>
+    <th> </th>
+    <td>
+    <%= submit_tag 'Submit',:id=>"add_to_db", :name => 'submit'%>
+    <input type="reset" name="reset">
+    </td>
+  </tr>
+</table>
+
+
+    <% end %>
+</div>
+
+<style>
+#search_box {
+	background:-moz-linear-gradient(top, #ffd73a, #ffa500);
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#ffd73a), to(#ffa500));
+	border:1px solid #d28703;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-box-shadow:inset 0 1px #ffff90, inset 0 -2px 5px #ffd05d, 0 0 0 4px rgba(255,255,255,0.65);
+	-webkit-box-shadow:inset 0 1px #ffff90, inset 0 -2px 5px #ffd05d, 0 0 0 4px rgba(255,255,255,0.65);
+	padding:24px;
+	width:1214px;
+}
+#search_box .wrapper {
+	background:#fff;
+	border:1px solid #d28703;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,.3), 0 1px #ff0;
+	-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,.3), 0 1px #ff0;
+	padding:7px 0 10px 8px;
+	position:relative;
+}
+#search_box input { border:none; color:#333; font:bold 24px Helvetica, Arial, sans-serif; width:510px; }
+#search_box button {
+	background:-moz-linear-gradient(top, #453e26, #000);
+	border:1px solid #000;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	-moz-box-shadow:inset 0 -2px 3px #193544, inset 0 1px #907817, 0 1px 1px rgba(0,0,0,4);
+	-webkit-box-shadow:inset 0 -2px 3px #193544, inset 0 1px #907817, 0 1px 1px rgba(0,0,0,.4);
+	cursor:pointer;
+	height:45px;
+	position:absolute;
+	right:2px;
+	top:2px;
+	width:45px;
+}
+</style>
+<style type="text/css">
+
+#form_table{
+	background:white;
+	border:none;
+	width:450px;
+	margin: 30px auto;
+	font-family: arial;
+	color:black;
+	}
+#form_table th {
+	text-align: right;
+	color: black;
+	font-size: 14px;
+	}
+#form_table td {
+	position: relative;
+	width: 40%;
+	}
+#form_table caption {
+	height: 28px;
+	 line-height: 18px;
+	 width: 450px;
+	 font-size: 21px;
+	 font-weight: bolder;
+	 }
+#form_table input, #form_table textarea {
+	width: 250px;
+	background-color: white;
+	display: inline;
+	color: #ddd;
+	border:2px solid #444;
+	margin:2px 5px;
+	font-family: arial;
+	height: 28px;
+	font-size: 13px;
+	border-radius:8px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+}
+#form_table input[type="submit"], #form_table input[type="reset"] {
+	width: 120px;
+	}
+#form_table input:focus, #form_table textarea:focus{
+	background:#555;
+	}
+#form_table input + span, #form_table textarea + span {
+	display: none;
+	background:url(images/message2.png) no-repeat center left;
+	line-height: 32px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000;
+	padding:0px 20px;
+	position: absolute;
+	width: 180px;
+	z-index:99;
+	}
+ 
+</style>
+<script>
+$(function() {
+
+	var $placeholder = $('input[placeholder]');
+
+	if ($placeholder.length > 0) {
+
+		var attrPh = $placeholder.attr('placeholder');
+
+		$placeholder.attr('value', attrPh)
+		  .bind('focus', function() {
+
+			var $this = $(this);
+
+			if($this.val() === attrPh)
+				$this.val('').css('color','#171207');
+
+		}).bind('blur', function() {
+
+			var $this = $(this);
+
+			if($this.val() === '')
+				$this.val(attrPh).css('color','#333');
+
+		});
+
+	}
+
+});
+</script>
+<script>
+    $(".add").click(function(){
+		var sym = $(this).attr("name");
+		$("#script_symbol").val(sym);
+
+    });
+$(".add").fancybox();
+function sendDataToServer() {
+var symb = $("#script_symbol").val();
+var b_s = $("#buy_sale input[type='radio']:checked").val();;
+var quan = $("#quantity").val();
+var price = $("#user_price").val();
+    var data = {
+script_symbol: symb,	
+buyorsale: b_s,
+quantity: quan,
+user_price: price,
+commit: "Submit"
+    }
+    $.ajax({
+type: "POST",
+url: "/session/add_to_portfolio",
+data: data,
+dataType: "script",
+success: function(){
+    alert('success');
+  },
+  error: function(data,status,e){
+    alert(e);
+  }
+    });
+}
+$("#add_to_db").click(function(e){
+        e.preventDefault();
+        sendDataToServer(); 
+    });
+</script>

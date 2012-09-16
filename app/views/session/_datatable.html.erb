@@ -1,0 +1,29 @@
+<h1> My Stocks</h1>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="table_table" width="100%">
+<thead>
+  <tr>
+<th>Symbol</th>
+<th>Last Trade Price</th>
+<th>Buy Quantity</th>
+<th>Buy Price</th>
+<th>Sell Quantity</th>
+<th>Sell Price</th>
+<th>Profit/Loss</th>
+</tr>
+</thead>
+<tbody>
+<% @my_scripts.each do |script| %>
+
+<tr>
+<td><%= script.script_symbol %></td>
+<td><%= find_last_trade(script.script_symbol)%></td>
+<td><%= buy_quantity(script)%></td>
+<td><%= buy_price(script)%></td>
+<td><%= sell_quantity(script)%></td>
+<td><%= sell_price(script)%></td>
+<td>0<%#= profit_loss(script)%></td>
+</tr>
+<% end %>
+</tbody>
+</tfoot>
+</table>
