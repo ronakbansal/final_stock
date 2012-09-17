@@ -22,31 +22,7 @@
 <% end %>
 </div>
 <div id="dialog-form">
-<% if @results %>
-<table style="border:5px solid #990000;">
-<tr style="border: solid 2px lightgrey;">
-<th style="border: solid 2px lightgrey;">Symbol</th>
-<th style="border: solid 2px lightgrey;">Name</th>
-<th style="border: solid 2px lightgrey;">Exchange</th>
-<th style="border: solid 2px lightgrey;">Add to the List</th>
-</tr>
-<% @results.each do |result| %>
-<% if result[:symbol].include?(".BO") or result[:symbol].include?(".NS") %>
-<tr style="border: solid 2px lightgrey;">
-<td style="border: solid 2px lightgrey;"><%= result[:symbol] %></td>
-<td style="border: solid 2px lightgrey;"><%= result[:name] %></td>
-<% if result[:symbol].include?(".BO") %>
-<td style="border: solid 2px lightgrey;">BSE</td>
-<% else %>
-<td style="border: solid 2px lightgrey;">NSE</td>
-<% end %>
 
-<td style="border: solid 2px lightgrey;"><%= link_to 'Add', '#buy-form', :class => 'add', :name=> result[:symbol], :id => 'buy-add' %></td>
-</tr>
-<% end%>
-<% end %>
-</table>
-<% end %>
 </div>
 <%= render :partial => 'datatable' %>
 
@@ -262,4 +238,21 @@ $("#add_to_db").click(function(e){
         e.preventDefault();
         sendDataToServer(); 
     });
+	
+$("#mazzi").click(function(e) {
+ e.preventDefault();
+ var sc = $("#search").val();
+ $.ajax({
+type: "GET",
+url: "/session/find_possible_scripts",
+data: {search : sc},
+success: function(data){
+ $.fancybox(data);	
+    },
+  error: function(data,status,e){
+    alert(e);
+  }
+    });
+ 
+});
 </script>

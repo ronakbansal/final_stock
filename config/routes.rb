@@ -1,6 +1,6 @@
 FinalStock::Application.routes.draw do
  # get "session/index"
-
+  get "session/find_possible_scripts"
   get "session/welcome"
   get "log_in" => "session#index", :as => "log_in"
   get "log_out" => "session#destroy", :as => "log_out"

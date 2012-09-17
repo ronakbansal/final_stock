@@ -17,16 +17,17 @@ def destroy
 end
   def welcome
   @my_scripts = Portfolio.find(:all, :conditions => [ "user_id = ?", current_user.id])
-  unless params[:search].blank?
+ 
+	render "welcome"
+  end
+  def find_possible_scripts
    @search_term = params[:search]
    @symbol = YahooStock::ScripSymbol.new(@search_term)
    @results = @symbol.results(:to_hash).output
-  end
-  if request.xhr?
-        render :json => @results
-    else
-  render "welcome"
-  end
+   respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @results }
+    end
   end
   def add_to_portfolio
 @add_to_table = Portfolio.create(:user_id => current_user.id, :script_symbol => params[:script_symbol], :quantity => params[:quantity], :user_price => params[:user_price],:buyorsale => params[:buyorsale])
