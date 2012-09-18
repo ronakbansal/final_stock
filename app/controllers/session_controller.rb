@@ -24,10 +24,7 @@ end
    @search_term = params[:search]
    @symbol = YahooStock::ScripSymbol.new(@search_term)
    @results = @symbol.results(:to_hash).output
-   respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @results }
-    end
+   render :partial => "find_possible_scripts"
   end
   def add_to_portfolio
 @add_to_table = Portfolio.create(:user_id => current_user.id, :script_symbol => params[:script_symbol], :quantity => params[:quantity], :user_price => params[:user_price],:buyorsale => params[:buyorsale])
