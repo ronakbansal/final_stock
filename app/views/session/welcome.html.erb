@@ -24,41 +24,37 @@
 
   <%= form_tag do %>
 <table border="0" id="form_table">
-<caption>Buy/Sell Form</caption>
+<caption>Buy/Sell Form<br/></caption>
   <tr>
-    <th width="25%">Script Symbol &#8250;</th>
+    <th width="50%">Script Symbol &#8250;</th>
     <td>
         <%= text_field_tag :script_symbol, params[:script_symbol] %>
-        <span>Enter Your Full Name</span>
-    </td>
+     </td>
   </tr>
   <tr>
     <th>Buy/Sell &#8250;</th>
     <td id="buy_sale">
     Buy: <%= radio_button_tag 'mode', 'Buy' %><br/>
 	Sell: <%= radio_button_tag 'mode', 'Sell' %>
-    <span>Your Active Email Address</span>
     </td>
   </tr>
     <tr>
-    <th width="25%">Quantity &#8250;</th>
+    <th width="50%">Quantity &#8250;</th>
     <td>
         <%= text_field_tag :quantity, params[:quantity] %>
-        <span>Enter Your Full Name</span>
     </td>
   </tr>
      <tr>
-    <th width="25%">Price &#8250;</th>
+    <th width="50%">Price &#8250;</th>
     <td>
         <%= text_field_tag :user_price, params[:user_price] %>
-        <span>Enter Your Full Name</span>
     </td>
   </tr>
     <tr>
     <th> </th>
     <td>
     <%= submit_tag 'Submit',:id=>"add_to_db", :name => 'submit'%>
-    <input type="reset" name="reset">
+    
     </td>
   </tr>
 </table>
@@ -173,66 +169,7 @@
    font-style: italic;
 } 
 </style>
-<style type="text/css">
 
-#form_table{
-	background:white;
-	border:none;
-	width:450px;
-	margin: 30px auto;
-	font-family: arial;
-	color:black;
-	}
-#form_table th {
-	text-align: right;
-	color: black;
-	font-size: 14px;
-	}
-#form_table td {
-	position: relative;
-	width: 40%;
-	}
-#form_table caption {
-	height: 28px;
-	 line-height: 18px;
-	 width: 450px;
-	 font-size: 21px;
-	 font-weight: bolder;
-	 }
-#form_table input, #form_table textarea {
-	width: 250px;
-	background-color: white;
-	display: inline;
-	color: #ddd;
-	border:2px solid #444;
-	margin:2px 5px;
-	font-family: arial;
-	height: 28px;
-	font-size: 13px;
-	border-radius:8px;
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
-}
-#form_table input[type="submit"], #form_table input[type="reset"] {
-	width: 120px;
-	}
-#form_table input:focus, #form_table textarea:focus{
-	background:#555;
-	}
-#form_table input + span, #form_table textarea + span {
-	display: none;
-	background:url(images/message2.png) no-repeat center left;
-	line-height: 32px;
-	font-size: 12px;
-	font-weight: bold;
-	color: #000;
-	padding:0px 20px;
-	position: absolute;
-	width: 180px;
-	z-index:99;
-	}
- 
-</style>
 
 <script>
  
