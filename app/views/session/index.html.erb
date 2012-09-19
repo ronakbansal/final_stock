@@ -208,12 +208,12 @@ box-shadow:0 0 5px #700;
 }
 /* // login form */
 </style>
-<div style="height:150px;border:1px solid black;width:100%;">
-<%= image_tag("banner.jpg")%>
+<div style="height:150px;border:1px solid black;width:100%;background:none repeat scroll 0 0 #0092C8">
+<%= image_tag "banner.png", :style => "padding:36px;"%>
 </div>
 
 <%= form_tag session_index_path, :id=>"login" do %>
-<h1>Log in to your <strong>Stockmanager.com</strong> account!</h1>
+<h1>Log in to your <strong>Stockstracker.com</strong> account!</h1>
 <p class="register">Not a member? <a href="#" id="create-user">Register here!</a></p>
 <div>
 <label for="login_username">Email</label>

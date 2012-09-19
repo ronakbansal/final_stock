@@ -1,24 +1,18 @@
-<div style="height:100px;border:1px solid black;width:100%;">
-<%= image_tag("banner.jpg")%>
+<div style="height:150px;border:1px solid black;width:100%;background:none repeat scroll 0 0 #0092C8">
+<%= image_tag "banner.png", :style => "padding:36px 0 0 310px"%>
 </div>
-<div id="user_nav" style="height:30px;width:100%;">
+<div id="user_nav" style="height:20px;width:100%;">
   <% if current_user %>
     Logged in as <%= current_user.email %>.
     <%= link_to "Log out", log_out_path %>
   <% end %>
 </div>
 
-<div style="height:100px;width:100%;">
-<%= form_tag url_for(:controller=>'session',:action=>'welcome') , :method=>'get', :id=>"search_box" do %>
-	<div class="wrapper">
+<div style="height:65px;width:100%;">
+<%= form_tag url_for(:controller=>'session',:action=>'welcome') , :method=>'get', :id=>"searchbox" do %>
 		<%= text_field_tag :search, params[:search],:id=>"search",:placeholder=>"Search and Add your Stock here..." %>
 		
-		<button type="submit" class="search_btn" id="mazzi"><%= image_tag("search_icon.png", :title=>"Search")%></button>
-		<div style="display:none;"> 
- <%= link_to 'Create New User', '#dialog-form', :id => 'create-user'%>
-</div>
-
-	</div>
+		<button type="submit" class="search_btn" id="mazzi">Search</button>
 <% end %>
 </div>
 <div id="dialog-form">
@@ -74,43 +68,110 @@
 </div>
 
 <style>
-#search_box {
-	background:-moz-linear-gradient(top, #ffd73a, #ffa500);
-	background:-webkit-gradient(linear, 0 0, 0 100%, from(#ffd73a), to(#ffa500));
-	border:1px solid #d28703;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-box-shadow:inset 0 1px #ffff90, inset 0 -2px 5px #ffd05d, 0 0 0 4px rgba(255,255,255,0.65);
-	-webkit-box-shadow:inset 0 1px #ffff90, inset 0 -2px 5px #ffd05d, 0 0 0 4px rgba(255,255,255,0.65);
-	padding:24px;
-	width:1214px;
+#searchbox
+{
+	background: #eaf8fc;
+	background-image: -moz-linear-gradient(#fff, #d4e8ec);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #d4e8ec),color-stop(1, #fff));
+	
+	-moz-border-radius: 35px;
+	border-radius: 35px;
+	
+	border-width: 1px;
+	border-style: solid;
+	border-color: #c4d9df #a4c3ca #83afb7;            
+	width: 500px;
+	height: 35px;
+	padding: 10px;
+	margin: 10px auto 50px;
+	overflow: hidden; /* Clear floats */
 }
-#search_box .wrapper {
-	background:#fff;
-	border:1px solid #d28703;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,.3), 0 1px #ff0;
-	-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,.3), 0 1px #ff0;
-	padding:7px 0 10px 8px;
-	position:relative;
+#search, #mazzi
+{
+	float: left;
 }
-#search_box input { border:none; color:#333; font:bold 24px Helvetica, Arial, sans-serif; width:510px; }
-#search_box button {
-	background:-moz-linear-gradient(top, #453e26, #000);
-	border:1px solid #000;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	-moz-box-shadow:inset 0 -2px 3px #193544, inset 0 1px #907817, 0 1px 1px rgba(0,0,0,4);
-	-webkit-box-shadow:inset 0 -2px 3px #193544, inset 0 1px #907817, 0 1px 1px rgba(0,0,0,.4);
-	cursor:pointer;
-	height:45px;
-	position:absolute;
-	right:2px;
-	top:2px;
-	width:45px;
+
+#search
+{
+	padding: 5px 9px;
+	height: 23px;
+	width: 380px;
+	border: 1px solid #a4c3ca;
+	font: normal 13px 'trebuchet MS', arial, helvetica;
+	background: #f1f1f1;
+	
+	-moz-border-radius: 50px 3px 3px 50px;
+	 border-radius: 50px 3px 3px 50px;
+	 -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	 -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);            
 }
+
+/* ----------------------- */
+
+#mazzi
+{		
+	background: #0092C8;
+	background-image: -moz-linear-gradient(#0092D2, #0092C8);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #6cbb6b),color-stop(1, #95d788));
+	
+	-moz-border-radius: 3px 50px 50px 3px;
+	border-radius: 3px 50px 50px 3px;
+	
+	border-width: 1px;
+	border-style: solid;
+	border-color: #0092C8 #578e57 #0092C8;
+	
+	 -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	 -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	 box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;   		
+
+	height: 35px;
+	margin: 0 0 0 10px;
+        padding: 0;
+	width: 90px;
+	cursor: pointer;
+	font: bold 14px Arial, Helvetica;
+	color: #23441e;
+	
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+#mazzi:hover
+{		
+	background: #95d788;
+	background-image: -moz-linear-gradient(#6cbb6b, #95d788);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #95d788),color-stop(1, #6cbb6b));
+}	
+
+#mazzi:active
+{		
+	background: #95d788;
+	outline: none;
+   
+	 -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	 -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
+}
+
+#mazzi::-moz-focus-inner
+{
+       border: 0;  /* Small centering fix for Firefox */
+}
+#search::-webkit-input-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}
+
+#search:-moz-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}  
+
+#search:-ms-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+} 
 </style>
 <style type="text/css">
 
@@ -172,36 +233,7 @@
 	}
  
 </style>
-<script>
-$(function() {
 
-	var $placeholder = $('input[placeholder]');
-
-	if ($placeholder.length > 0) {
-
-		var attrPh = $placeholder.attr('placeholder');
-
-		$placeholder.attr('value', attrPh)
-		  .bind('focus', function() {
-
-			var $this = $(this);
-
-			if($this.val() === attrPh)
-				$this.val('').css('color','#171207');
-
-		}).bind('blur', function() {
-
-			var $this = $(this);
-
-			if($this.val() === '')
-				$this.val(attrPh).css('color','#333');
-
-		});
-
-	}
-
-});
-</script>
 <script>
  
  $(".add").fancybox();

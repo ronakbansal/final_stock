@@ -17,7 +17,7 @@ end
 
 def buy_price script
 if script.buyorsale == 'Buy'
- return script.user_price
+ return script.user_price.to_f
 else
  return nil
  end
@@ -33,7 +33,7 @@ end
 
 def sell_price script
 if script.buyorsale == 'Sell'
- return script.user_price
+ return script.user_price.to_f
 else
  return nil
  end
