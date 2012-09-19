@@ -214,14 +214,17 @@ $("#add_to_db").click(function(e){
     });
 	
 $("#mazzi").click(function(e) {
+ 
  e.preventDefault();
+  $.fancybox.showLoading();
  var sc = $("#search").val();
  $.ajax({
 type: "GET",
 url: "/session/find_possible_scripts",
 data: {search : sc},
 success: function(data){
- $.fancybox(data);	
+ 
+  $.fancybox(data);	
     },
   error: function(data,status,e){
     alert(e);
