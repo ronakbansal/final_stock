@@ -50,6 +50,7 @@ else
 end
 
 def total_pl my_scripts
+if !my_scripts.blank?
 temp = 0;
 my_scripts.each do |script|
 quote = YahooStock::Quote.new(:stock_symbols => [script.script_symbol])
@@ -62,5 +63,8 @@ else
  end
 end
 return temp.to_d
+else
+return 0
+end
 end
 end

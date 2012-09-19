@@ -18,7 +18,9 @@
 <div id="dialog-form">
 
 </div>
+
 <%= render :partial => 'datatable' %>
+
 
 <div id="buy-form" style="border:2px solid;display:none;">
 
@@ -198,7 +200,8 @@ url: "/session/add_to_portfolio",
 data: data,
 dataType: "script",
 success: function(){
-    alert('success');
+    alert('Added Successfully');
+	window.location.reload(true);
   },
   error: function(data,status,e){
     alert(e);
@@ -227,3 +230,4 @@ success: function(data){
  
 });
 </script>
+

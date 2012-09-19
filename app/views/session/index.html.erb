@@ -9,7 +9,8 @@ height: 350,
 width: 350,
 modal: true,
 buttons: {
-"Create an account": function() {
+"Create an account": function(e) {
+e.preventDefault();
 var em = $("#email_create").val();
 var ps = $("#password_create").val();
 var psc = $("#password_confirmation").val();
@@ -24,7 +25,7 @@ url: "/user",
 data: data,
 dataType: "script",
 success: function(){
-    alert('success');
+    alert('Successfully Registered');
   },
   error: function(data,status,e){
     alert(e);
