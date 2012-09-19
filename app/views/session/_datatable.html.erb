@@ -10,6 +10,7 @@
 <th>Sell Quantity</th>
 <th>Sell Price</th>
 <th>Profit/Loss</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -22,6 +23,7 @@
 <td><%= sell_quantity(script)%></td>
 <td><%= sell_price(script)%></td>
 <td><%= profit_loss(script)%></td>
+<td><%= link_to "Delete", session_destroy_stock_path(:car => script.id), :confirm => 'Are you sure?' %></td>
 </tr>
 <% end %>
 </tbody>

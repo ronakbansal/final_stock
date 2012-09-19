@@ -30,4 +30,13 @@ end
 @add_to_table = Portfolio.create(:user_id => current_user.id, :script_symbol => params[:script_symbol], :quantity => params[:quantity], :user_price => params[:user_price],:buyorsale => params[:buyorsale])
 render :nothing => true
 end
+  def destroy_stock
+     p "------------------"
+	 p params[:car]
+    @stock = Portfolio.find(:all, :conditions => [ "id = ?", params[:car]])
+    @stock.each do |stock|
+	stock.destroy
+	end
+    redirect_to :action => 'welcome'
+  end
 end
