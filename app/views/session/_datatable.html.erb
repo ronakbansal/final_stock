@@ -1,4 +1,5 @@
-<p style="font-weight:bold;text-decoration:underline;color:#000000;background-color:#FFFFFF;letter-spacing:1pt;word-spacing:2pt;font-size:40px;text-align:center;font-family:georgia, serif;line-height:1;margin:20px 0;">My Stocks</p>
+<p style="font-weight:bold;text-decoration:underline;color:#000000;background-color:#FFFFFF;letter-spacing:1pt;word-spacing:2pt;font-size:30px;text-align:center;font-family:georgia, serif;line-height:1;margin:20px 0;">My Stocks</p>
+<p style="font-weight:bold;color:#000000;background-color:#FFFFFF;letter-spacing:1pt;word-spacing:2pt;font-size:45px;text-align:center;font-family:georgia, serif;line-height:1;margin:20px 0;">Total Profit/Loss : <%= total_pl(@my_scripts)%></p>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="table_table" width="100%">
 <thead>
   <tr>
@@ -13,7 +14,6 @@
 </thead>
 <tbody>
 <% @my_scripts.each do |script| %>
-
 <tr>
 <td><%= script.script_symbol %></td>
 <td><%= find_last_trade(script.script_symbol)%></td>
@@ -21,7 +21,7 @@
 <td><%= buy_price(script)%></td>
 <td><%= sell_quantity(script)%></td>
 <td><%= sell_price(script)%></td>
-<td>0<%#= profit_loss(script)%></td>
+<td><%= profit_loss(script)%></td>
 </tr>
 <% end %>
 </tbody>
