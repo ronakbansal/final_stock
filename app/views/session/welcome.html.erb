@@ -174,14 +174,31 @@
 
 
 <script>
+$("#mazzi").click(function(e) {
  
- $(".add").fancybox();
+ e.preventDefault();
+  $.fancybox.showLoading();
+ var sc = $("#search").val();
+ $.ajax({
+type: "GET",
+url: "/session/find_possible_scripts",
+data: {search : sc},
+success: function(data){
+ 
+  $.fancybox(data);	
+    },
+  error: function(data,status,e){
+    alert(e);
+  }
+    });
+ 
+}); 
  $(".add").click(function(){
 var sym = $(this).attr("name");
 $("#script_symbol").val(sym);
 
     });
-
+$(".add").fancybox();
 function sendDataToServer() {
 var symb = $("#script_symbol").val();
 var b_s = $("#buy_sale input[type='radio']:checked").val();;
@@ -213,24 +230,6 @@ $("#add_to_db").click(function(e){
         sendDataToServer(); 
     });
 	
-$("#mazzi").click(function(e) {
- 
- e.preventDefault();
-  $.fancybox.showLoading();
- var sc = $("#search").val();
- $.ajax({
-type: "GET",
-url: "/session/find_possible_scripts",
-data: {search : sc},
-success: function(data){
- 
-  $.fancybox(data);	
-    },
-  error: function(data,status,e){
-    alert(e);
-  }
-    });
- 
-});
+
 </script>
 
